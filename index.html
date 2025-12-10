@@ -26,9 +26,11 @@
     }
 
     body {
-      font-family: 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+      font-family: 'PingFang TC', 'Microsoft JhengHei', 'Arial', sans-serif;
       background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+      background-attachment: fixed;
       color: #fff;
+      touch-action: manipulation;
     }
 
     .container {
@@ -37,6 +39,7 @@
       display: flex;
       flex-direction: column;
       padding: 10px;
+      overflow: hidden;
     }
 
     header {
@@ -44,18 +47,23 @@
       padding: 6px;
       background: rgba(255, 255, 255, 0.1);
       border-radius: 12px;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
       margin-bottom: 6px;
       flex-shrink: 0;
     }
 
     h1 {
       font-size: 1.5em;
+      margin-bottom: 2px;
+      text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
       color: #fff;
     }
 
     .subtitle {
       color: #ffd700;
       font-size: 0.8em;
+      font-weight: 300;
     }
 
     .student-login {
@@ -64,12 +72,15 @@
       background: rgba(255, 255, 255, 0.1);
       padding: 40px 30px;
       border-radius: 20px;
+      backdrop-filter: blur(10px);
       text-align: center;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
     }
 
     .student-login h2 {
       margin-bottom: 20px;
       font-size: 1.8em;
+      color: #fff;
     }
 
     .student-login input {
@@ -84,6 +95,11 @@
       color: #333;
     }
 
+    .student-login input:focus {
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(255, 215, 0, 0.5);
+    }
+
     .btn-primary {
       width: 100%;
       padding: 18px;
@@ -94,6 +110,8 @@
       font-size: 1.4em;
       font-weight: bold;
       cursor: pointer;
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(52, 152, 219, 0.4);
     }
 
     .btn-primary:active {
@@ -105,28 +123,44 @@
       grid-template-columns: repeat(5, 1fr);
       gap: 10px;
       margin-bottom: 10px;
+      flex-shrink: 0;
     }
 
     .level-card {
-      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
       padding: 20px 15px;
       border-radius: 15px;
       cursor: pointer;
+      transition: all 0.3s ease;
       text-align: center;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
       min-height: 120px;
       display: flex;
       flex-direction: column;
       justify-content: center;
     }
 
-    .level-card:active { transform: scale(0.95); }
-    .level-card.level-2 { background: linear-gradient(135deg, #f39c12, #d68910); }
-    .level-card.level-3 { background: linear-gradient(135deg, #27ae60, #229954); }
-    .level-card.level-4 { background: linear-gradient(135deg, #3498db, #2980b9); }
-    .level-card.level-5 { background: linear-gradient(135deg, #9b59b6, #8e44ad); }
+    .level-card:active {
+      transform: scale(0.95);
+    }
 
-    .level-card h3 { font-size: 1.4em; margin-bottom: 8px; }
-    .level-card p { font-size: 0.9em; margin: 3px 0; }
+    .level-card.level-2 { background: linear-gradient(135deg, #f39c12 0%, #d68910 100%); }
+    .level-card.level-3 { background: linear-gradient(135deg, #27ae60 0%, #229954 100%); }
+    .level-card.level-4 { background: linear-gradient(135deg, #3498db 0%, #2980b9 100%); }
+    .level-card.level-5 { background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%); }
+
+    .level-card h3 {
+      font-size: 1.4em;
+      margin-bottom: 8px;
+      color: #fff;
+    }
+
+    .level-card p {
+      font-size: 0.9em;
+      opacity: 0.95;
+      margin: 3px 0;
+      color: #fff;
+    }
 
     .practice-area {
       display: none;
@@ -135,7 +169,9 @@
       overflow: hidden;
     }
 
-    .practice-area.active { display: flex; }
+    .practice-area.active {
+      display: flex;
+    }
 
     .top-bar {
       display: flex;
@@ -153,14 +189,20 @@
       border-radius: 10px;
       cursor: pointer;
       font-size: 1em;
+      transition: all 0.3s;
+      backdrop-filter: blur(5px);
     }
 
-    .back-button:active { transform: scale(0.95); }
+    .back-button:active {
+      background: rgba(255, 255, 255, 0.3);
+      transform: scale(0.95);
+    }
 
     .level-title {
       font-size: 1.3em;
       text-align: center;
       flex: 1;
+      color: #fff;
     }
 
     .score-board {
@@ -176,20 +218,38 @@
       padding: 8px;
       border-radius: 10px;
       text-align: center;
+      backdrop-filter: blur(5px);
+      border: 2px solid rgba(255, 255, 255, 0.2);
     }
 
-    .score-label { font-size: 0.75em; margin-bottom: 3px; }
-    .score-value { font-size: 1.4em; font-weight: bold; color: #ffd700; }
+    .score-label {
+      font-size: 0.75em;
+      opacity: 0.9;
+      margin-bottom: 3px;
+      color: #fff;
+    }
+
+    .score-value {
+      font-size: 1.4em;
+      font-weight: bold;
+      color: #ffd700;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+    }
 
     .pattern-display {
       background: rgba(0, 0, 0, 0.4);
       padding: 8px;
       border-radius: 10px;
       margin-bottom: 6px;
+      backdrop-filter: blur(5px);
       flex-shrink: 0;
     }
 
-    .pattern-display h3 { margin-bottom: 6px; font-size: 0.9em; }
+    .pattern-display h3 {
+      margin-bottom: 6px;
+      font-size: 0.9em;
+      color: #fff;
+    }
 
     .pattern-container {
       display: flex;
@@ -217,9 +277,23 @@
       border-radius: 6px;
       padding: 3px 10px;
       min-width: 40px;
+      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
     }
 
-    .pattern-grid-container { flex: 1; overflow-x: auto; }
+    .pattern-grid-container {
+      flex: 1;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .pattern-grid-container::-webkit-scrollbar {
+      height: 6px;
+    }
+
+    .pattern-grid-container::-webkit-scrollbar-thumb {
+      background: rgba(255, 215, 0, 0.5);
+      border-radius: 3px;
+    }
 
     .pattern-grid {
       display: grid;
@@ -232,12 +306,14 @@
       background: rgba(255, 255, 255, 0.1);
       border-radius: 5px;
       border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.2s;
       min-width: 22px;
     }
 
     .beat-cell.active {
       background: #ffd700;
       box-shadow: 0 0 10px #ffd700;
+      border-color: #ffd700;
     }
 
     .beat-cell.current {
@@ -250,6 +326,7 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 6px;
+      justify-content: center;
       margin-bottom: 6px;
       flex-shrink: 0;
     }
@@ -263,11 +340,21 @@
       cursor: pointer;
       font-size: 0.95em;
       font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
     }
 
-    .control-button:active { transform: scale(0.95); }
-    .control-button:disabled { opacity: 0.5; }
-    .control-button.playing { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+    .control-button:active {
+      transform: scale(0.95);
+    }
+
+    .control-button:disabled {
+      opacity: 0.5;
+    }
+
+    .control-button.playing {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+    }
 
     .tempo-control {
       grid-column: 1 / -1;
@@ -277,9 +364,14 @@
       background: rgba(255, 255, 255, 0.1);
       padding: 8px 15px;
       border-radius: 10px;
+      backdrop-filter: blur(5px);
     }
 
-    .tempo-control label { font-size: 0.9em; white-space: nowrap; }
+    .tempo-control label {
+      font-size: 0.9em;
+      color: #fff;
+      white-space: nowrap;
+    }
 
     .tempo-control input[type="range"] {
       flex: 1;
@@ -287,6 +379,7 @@
       -webkit-appearance: none;
       background: rgba(255, 255, 255, 0.3);
       border-radius: 3px;
+      outline: none;
     }
 
     .tempo-control input[type="range"]::-webkit-slider-thumb {
@@ -296,9 +389,16 @@
       background: #ffd700;
       border-radius: 50%;
       cursor: pointer;
+      box-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
     }
 
-    .tempo-display { font-size: 1em; font-weight: bold; min-width: 70px; text-align: center; }
+    .tempo-display {
+      font-size: 1em;
+      font-weight: bold;
+      min-width: 70px;
+      text-align: center;
+      color: #fff;
+    }
 
     .drum-kit {
       display: grid;
@@ -318,19 +418,42 @@
       align-items: center;
       justify-content: center;
       font-weight: bold;
+      transition: all 0.1s ease;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
       touch-action: manipulation;
       min-height: 0;
     }
 
-    .drum-pad:active { transform: scale(0.93); }
+    .drum-pad:active {
+      transform: scale(0.93);
+    }
+
     .drum-pad.hit {
       background: linear-gradient(145deg, #ffd700, #ffed4e);
       border-color: #fff;
+      transform: scale(1.05);
     }
 
-    .drum-icon { font-size: 2.5em; margin-bottom: 5px; }
-    .drum-name { font-size: 1em; margin-bottom: 4px; }
-    .drum-key { font-size: 0.85em; background: rgba(0, 0, 0, 0.3); padding: 4px 8px; border-radius: 5px; color: #ffd700; }
+    .drum-icon {
+      font-size: 2.5em;
+      margin-bottom: 5px;
+      color: #fff;
+    }
+
+    .drum-name {
+      font-size: 1em;
+      margin-bottom: 4px;
+      color: #fff;
+    }
+
+    .drum-key {
+      font-size: 0.85em;
+      opacity: 0.8;
+      background: rgba(0, 0, 0, 0.3);
+      padding: 4px 8px;
+      border-radius: 5px;
+      color: #ffd700;
+    }
 
     .countdown {
       position: fixed;
@@ -344,9 +467,12 @@
       z-index: 3000;
       display: none;
       animation: countPulse 1s ease;
+      pointer-events: none;
     }
 
-    .countdown.show { display: block; }
+    .countdown.show {
+      display: block;
+    }
 
     @keyframes countPulse {
       0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
@@ -365,17 +491,30 @@
       font-weight: bold;
       display: none;
       z-index: 1000;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+      pointer-events: none;
     }
 
-    .feedback.show { display: block; animation: feedbackPop 0.4s ease; }
+    .feedback.show {
+      display: block;
+      animation: feedbackPop 0.4s ease;
+    }
 
     @keyframes feedbackPop {
       0% { transform: translate(-50%, -50%) scale(0.7); opacity: 0; }
+      50% { transform: translate(-50%, -50%) scale(1.05); }
       100% { transform: translate(-50%, -50%) scale(1); opacity: 1; }
     }
 
-    .feedback.perfect { background: linear-gradient(135deg, #27ae60, #229954); }
-    .feedback.miss { background: linear-gradient(135deg, #e74c3c, #c0392b); }
+    .feedback.perfect {
+      background: linear-gradient(135deg, #27ae60, #229954);
+      color: #fff;
+    }
+
+    .feedback.miss {
+      background: linear-gradient(135deg, #e74c3c, #c0392b);
+      color: #fff;
+    }
 
     .result-modal {
       display: none;
@@ -388,9 +527,12 @@
       z-index: 2000;
       align-items: center;
       justify-content: center;
+      backdrop-filter: blur(5px);
     }
 
-    .result-modal.show { display: flex; }
+    .result-modal.show {
+      display: flex;
+    }
 
     .result-content {
       background: linear-gradient(135deg, #2c3e50, #34495e);
@@ -398,18 +540,77 @@
       border-radius: 25px;
       text-align: center;
       max-width: 600px;
+      box-shadow: 0 15px 60px rgba(0, 0, 0, 0.6);
+      border: 3px solid rgba(255, 215, 0, 0.3);
       margin: 20px;
     }
 
-    .result-content h2 { font-size: 2.5em; margin-bottom: 30px; color: #ffd700; }
-    .result-stat { margin: 15px 0; font-size: 1.4em; padding: 15px; background: rgba(0, 0, 0, 0.3); border-radius: 12px; }
-    .result-buttons { display: flex; gap: 15px; justify-content: center; margin-top: 30px; }
-    .encouragement { margin: 20px 0; font-size: 1.4em; color: #ffd700; }
+    .result-content h2 {
+      font-size: 2.5em;
+      margin-bottom: 30px;
+      color: #ffd700;
+      text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+    }
 
+    .result-stats {
+      margin: 30px 0;
+    }
+
+    .result-stat {
+      margin: 15px 0;
+      font-size: 1.4em;
+      padding: 15px;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      color: #fff;
+    }
+
+    .result-buttons {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      margin-top: 30px;
+    }
+
+    .encouragement {
+      margin: 20px 0;
+      font-size: 1.4em;
+      color: #ffd700;
+    }
+
+    /* 橫向模式優化 */
+    @media screen and (orientation: landscape) {
+      .container {
+        padding: 8px;
+      }
+
+      .level-selector {
+        grid-template-columns: repeat(5, 1fr);
+      }
+
+      .drum-kit {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    /* 直向模式優化 */
     @media screen and (orientation: portrait) {
-      .level-selector { grid-template-columns: repeat(3, 1fr); }
-      .drum-kit { grid-template-columns: repeat(2, 1fr); }
-      .pattern-container { flex-direction: column; }
+      .container {
+        padding: 10px;
+      }
+
+      .level-selector {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      .drum-kit {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .pattern-container {
+        flex-direction: column;
+      }
+
       .drum-labels {
         flex-direction: row;
         border-right: none;
@@ -429,20 +630,43 @@
       <p class="subtitle" id="welcomeText">iPad 專用版</p>
     </header>
 
+    <!-- 學生登入區 -->
     <div class="student-login" id="loginArea">
       <h2>👋 請輸入您的姓名</h2>
-      <input type="text" id="studentName" placeholder="輸入姓名..." maxlength="20">
+      <input type="text" id="studentName" placeholder="輸入姓名開始練習..." maxlength="20" autocomplete="off">
       <button class="btn-primary" onclick="login()">開始練習 🎵</button>
     </div>
 
+    <!-- 關卡選擇 -->
     <div class="level-selector" id="levelSelector" style="display: none;">
-      <div class="level-card" onclick="selectLevel(1)"><h3>⭐ L1</h3><p>基礎四拍子</p><p>80 BPM</p></div>
-      <div class="level-card level-2" onclick="selectLevel(2)"><h3>⭐⭐ L2</h3><p>搖滾節奏</p><p>100 BPM</p></div>
-      <div class="level-card level-3" onclick="selectLevel(3)"><h3>⭐⭐⭐ L3</h3><p>8 Beat</p><p>120 BPM</p></div>
-      <div class="level-card level-4" onclick="selectLevel(4)"><h3>⭐⭐⭐⭐ L4</h3><p>16 Beat</p><p>110 BPM</p></div>
-      <div class="level-card level-5" onclick="selectLevel(5)"><h3>⭐⭐⭐⭐⭐ L5</h3><p>爵士 Swing</p><p>140 BPM</p></div>
+      <div class="level-card" onclick="selectLevel(1)">
+        <h3>⭐ L1</h3>
+        <p>基礎四拍子</p>
+        <p>80 BPM</p>
+      </div>
+      <div class="level-card level-2" onclick="selectLevel(2)">
+        <h3>⭐⭐ L2</h3>
+        <p>搖滾節奏</p>
+        <p>100 BPM</p>
+      </div>
+      <div class="level-card level-3" onclick="selectLevel(3)">
+        <h3>⭐⭐⭐ L3</h3>
+        <p>8 Beat 變化</p>
+        <p>120 BPM</p>
+      </div>
+      <div class="level-card level-4" onclick="selectLevel(4)">
+        <h3>⭐⭐⭐⭐ L4</h3>
+        <p>16 Beat 節奏</p>
+        <p>110 BPM</p>
+      </div>
+      <div class="level-card level-5" onclick="selectLevel(5)">
+        <h3>⭐⭐⭐⭐⭐ L5</h3>
+        <p>爵士 Swing</p>
+        <p>140 BPM</p>
+      </div>
     </div>
 
+    <!-- 練習區 -->
     <div class="practice-area" id="practiceArea">
       <div class="top-bar">
         <button class="back-button" onclick="backToLevels()">← 返回</button>
@@ -450,21 +674,32 @@
       </div>
 
       <div class="score-board">
-        <div class="score-item"><div class="score-label">🎯 準確度</div><div class="score-value" id="accuracy">0%</div></div>
-        <div class="score-item"><div class="score-label">🔥 連擊</div><div class="score-value" id="combo">0</div></div>
-        <div class="score-item"><div class="score-label">⭐ 分數</div><div class="score-value" id="score">0</div></div>
+        <div class="score-item">
+          <div class="score-label">🎯 準確度</div>
+          <div class="score-value" id="accuracy">0%</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">🔥 連擊</div>
+          <div class="score-value" id="combo">0</div>
+        </div>
+        <div class="score-item">
+          <div class="score-label">⭐ 分數</div>
+          <div class="score-value" id="score">0</div>
+        </div>
       </div>
 
       <div class="pattern-display">
         <h3>🎼 節奏型態</h3>
         <div class="pattern-container">
           <div class="drum-labels">
-            <div class="drum-label">A</div>
             <div class="drum-label">S</div>
+            <div class="drum-label">A</div>
             <div class="drum-label">D</div>
             <div class="drum-label">F</div>
           </div>
-          <div class="pattern-grid-container"><div class="pattern-grid" id="patternGrid"></div></div>
+          <div class="pattern-grid-container">
+            <div class="pattern-grid" id="patternGrid"></div>
+          </div>
         </div>
       </div>
 
@@ -480,24 +715,36 @@
       </div>
 
       <div class="drum-kit">
-        <div class="drum-pad" data-drum="hihat" ontouchstart="hitDrum('hihat', event)" ontouchend="releaseDrum(event)">
-          <div class="drum-icon">⊙</div><div class="drum-name">Hi-Hat</div><div class="drum-key">A</div>
-        </div>
         <div class="drum-pad" data-drum="snare" ontouchstart="hitDrum('snare', event)" ontouchend="releaseDrum(event)">
-          <div class="drum-icon">◎</div><div class="drum-name">Snare</div><div class="drum-key">S</div>
+          <div class="drum-icon">◎</div>
+          <div class="drum-name">Snare</div>
+          <div class="drum-key">A</div>
+        </div>
+        <div class="drum-pad" data-drum="hihat" ontouchstart="hitDrum('hihat', event)" ontouchend="releaseDrum(event)">
+          <div class="drum-icon">⊙</div>
+          <div class="drum-name">Hi-Hat</div>
+          <div class="drum-key">S</div>
         </div>
         <div class="drum-pad" data-drum="kick" ontouchstart="hitDrum('kick', event)" ontouchend="releaseDrum(event)">
-          <div class="drum-icon">●</div><div class="drum-name">Kick</div><div class="drum-key">D</div>
+          <div class="drum-icon">●</div>
+          <div class="drum-name">Kick</div>
+          <div class="drum-key">D</div>
         </div>
         <div class="drum-pad" data-drum="crash" ontouchstart="hitDrum('crash', event)" ontouchend="releaseDrum(event)">
-          <div class="drum-icon">✱</div><div class="drum-name">Crash</div><div class="drum-key">F</div>
+          <div class="drum-icon">✱</div>
+          <div class="drum-name">Crash</div>
+          <div class="drum-key">F</div>
         </div>
       </div>
     </div>
 
+    <!-- 倒數計時顯示 -->
     <div class="countdown" id="countdown"></div>
+
+    <!-- 回饋提示 -->
     <div class="feedback" id="feedback"></div>
 
+    <!-- 結果彈窗 -->
     <div class="result-modal" id="resultModal">
       <div class="result-content">
         <h2>🎉 完成！</h2>
@@ -508,53 +755,573 @@
         </div>
         <div class="encouragement" id="encouragement"></div>
         <div class="result-buttons">
-          <button class="control-button" onclick="closeResultModal()">返回</button>
-          <button class="control-button" onclick="retryLevel()">再練</button>
+          <button class="control-button" onclick="closeResultModal()">返回關卡</button>
+          <button class="control-button" onclick="retryLevel()">再練一次</button>
         </div>
       </div>
     </div>
   </div>
 
   <script>
+    // 音訊上下文
     const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+    // 關卡設定
     const levels = {
-      1: { name: "⭐ Level 1 - 基礎四拍子", bpm: 80, pattern: { hihat: [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0], snare: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], kick: [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0], crash: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] } },
-      2: { name: "⭐⭐ Level 2 - 搖滾基本節奏", bpm: 100, pattern: { hihat: [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0], snare: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], kick: [1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0], crash: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] } },
-      3: { name: "⭐⭐⭐ Level 3 - 8 Beat 變化", bpm: 120, pattern: { hihat: [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0], snare: [0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0], kick: [1,0,0,1,0,0,1,0,1,0,0,0,0,0,1,0], crash: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] } },
-      4: { name: "⭐⭐⭐⭐ Level 4 - 16 Beat 節奏", bpm: 110, pattern: { hihat: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1], snare: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0], kick: [1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0], crash: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] } },
-      5: { name: "⭐⭐⭐⭐⭐ Level 5 - 爵士 Swing", bpm: 140, pattern: { hihat: [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0], snare: [0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0], kick: [1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0], crash: [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0] } }
+      1: {
+        name: "⭐ Level 1 - 基礎四拍子",
+        bpm: 80,
+        pattern: {
+          hihat: [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
+          snare: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+          kick: [1,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0],
+          crash: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        }
+      },
+      2: {
+        name: "⭐⭐ Level 2 - 搖滾基本節奏",
+        bpm: 100,
+        pattern: {
+          hihat: [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
+          snare: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+          kick: [1,0,0,0,0,0,1,0,1,0,0,0,0,0,0,0],
+          crash: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        }
+      },
+      3: {
+        name: "⭐⭐⭐ Level 3 - 8 Beat 變化",
+        bpm: 120,
+        pattern: {
+          hihat: [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
+          snare: [0,0,0,0,1,0,0,1,0,0,0,0,1,0,0,0],
+          kick: [1,0,0,1,0,0,1,0,1,0,0,0,0,0,1,0],
+          crash: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        }
+      },
+      4: {
+        name: "⭐⭐⭐⭐ Level 4 - 16 Beat 節奏",
+        bpm: 110,
+        pattern: {
+          hihat: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+          snare: [0,0,0,0,1,0,0,0,0,0,0,0,1,0,0,0],
+          kick: [1,0,0,0,0,0,1,0,0,1,0,0,0,0,1,0],
+          crash: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        }
+      },
+      5: {
+        name: "⭐⭐⭐⭐⭐ Level 5 - 爵士 Swing",
+        bpm: 140,
+        pattern: {
+          hihat: [1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0],
+          snare: [0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0],
+          kick: [1,0,0,0,0,1,0,0,1,0,0,0,0,0,0,0],
+          crash: [1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        }
+      }
     };
-    let studentName='',currentLevel=1,isPlaying=false,currentBeat=0,intervalId=null,score=0,combo=0,maxComboValue=0,hits=0,totalBeats=0,expectedHits=0,loops=0,maxLoops=4,lastHitTime={},countdownValue=0,isCountingDown=false;
 
-    function playHiHat(){const n=audioContext.createBufferSource(),b=audioContext.createBuffer(1,audioContext.sampleRate*0.05,audioContext.sampleRate),o=b.getChannelData(0);for(let i=0;i<b.length;i++)o[i]=Math.random()*2-1;n.buffer=b;const f=audioContext.createBiquadFilter();f.type='highpass';f.frequency.value=7000;const g=audioContext.createGain();g.gain.setValueAtTime(0.3,audioContext.currentTime);g.gain.exponentialRampToValueAtTime(0.01,audioContext.currentTime+0.05);n.connect(f);f.connect(g);g.connect(audioContext.destination);n.start(audioContext.currentTime);n.stop(audioContext.currentTime+0.05);}
-    function playSnare(){const o=audioContext.createOscillator(),og=audioContext.createGain();o.type='triangle';o.frequency.setValueAtTime(100,audioContext.currentTime);o.frequency.exponentialRampToValueAtTime(50,audioContext.currentTime+0.1);og.gain.setValueAtTime(0.7,audioContext.currentTime);og.gain.exponentialRampToValueAtTime(0.01,audioContext.currentTime+0.1);o.connect(og);const n=audioContext.createBufferSource(),b=audioContext.createBuffer(1,audioContext.sampleRate*0.1,audioContext.sampleRate),out=b.getChannelData(0);for(let i=0;i<b.length;i++)out[i]=Math.random()*2-1;n.buffer=b;const nf=audioContext.createBiquadFilter();nf.type='highpass';nf.frequency.value=1000;const ng=audioContext.createGain();ng.gain.setValueAtTime(0.4,audioContext.currentTime);ng.gain.exponentialRampToValueAtTime(0.01,audioContext.currentTime+0.1);n.connect(nf);nf.connect(ng);const mg=audioContext.createGain();mg.gain.value=0.6;og.connect(mg);ng.connect(mg);mg.connect(audioContext.destination);o.start(audioContext.currentTime);o.stop(audioContext.currentTime+0.1);n.start(audioContext.currentTime);n.stop(audioContext.currentTime+0.1);}
-    function playKick(){const o=audioContext.createOscillator(),g=audioContext.createGain();o.type='sine';o.frequency.setValueAtTime(150,audioContext.currentTime);o.frequency.exponentialRampToValueAtTime(40,audioContext.currentTime+0.05);o.frequency.exponentialRampToValueAtTime(30,audioContext.currentTime+0.3);g.gain.setValueAtTime(1,audioContext.currentTime);g.gain.exponentialRampToValueAtTime(0.5,audioContext.currentTime+0.05);g.gain.exponentialRampToValueAtTime(0.01,audioContext.currentTime+0.3);const f=audioContext.createBiquadFilter();f.type='lowpass';f.frequency.value=200;o.connect(f);f.connect(g);g.connect(audioContext.destination);o.start(audioContext.currentTime);o.stop(audioContext.currentTime+0.3);}
-    function playCrash(){const n=audioContext.createBufferSource(),b=audioContext.createBuffer(1,audioContext.sampleRate*0.8,audioContext.sampleRate),o=b.getChannelData(0);for(let i=0;i<b.length;i++)o[i]=Math.random()*2-1;n.buffer=b;const f1=audioContext.createBiquadFilter();f1.type='bandpass';f1.frequency.value=5000;f1.Q.value=1;const f2=audioContext.createBiquadFilter();f2.type='highpass';f2.frequency.value=3000;const g=audioContext.createGain();g.gain.setValueAtTime(0.4,audioContext.currentTime);g.gain.exponentialRampToValueAtTime(0.2,audioContext.currentTime+0.1);g.gain.exponentialRampToValueAtTime(0.01,audioContext.currentTime+0.8);n.connect(f1);f1.connect(f2);f2.connect(g);g.connect(audioContext.destination);n.start(audioContext.currentTime);n.stop(audioContext.currentTime+0.8);}
-    function playSound(d){if(d==='hihat')playHiHat();else if(d==='snare')playSnare();else if(d==='kick')playKick();else if(d==='crash')playCrash();}
-    function playClick(){const o=audioContext.createOscillator(),g=audioContext.createGain();o.frequency.value=1000;o.connect(g);g.connect(audioContext.destination);g.gain.setValueAtTime(0.3,audioContext.currentTime);g.gain.exponentialRampToValueAtTime(0.01,audioContext.currentTime+0.05);o.start(audioContext.currentTime);o.stop(audioContext.currentTime+0.05);}
+    // 遊戲狀態變數
+    let studentName = '';
+    let currentLevel = 1;
+    let isPlaying = false;
+    let currentBeat = 0;
+    let intervalId = null;
+    let score = 0;
+    let combo = 0;
+    let maxComboValue = 0;
+    let hits = 0;
+    let totalBeats = 0;
+    let expectedHits = 0;
+    let loops = 0;
+    let maxLoops = 4;
+    let lastHitTime = {};
+    let countdownValue = 0;
+    let isCountingDown = false;
 
-    function login(){const n=document.getElementById('studentName').value.trim();if(n===''){alert('請輸入姓名');return;}studentName=n;document.getElementById('loginArea').style.display='none';document.getElementById('levelSelector').style.display='grid';document.getElementById('welcomeText').textContent=`歡迎 ${studentName}！`;}
-    function hitDrum(d,e){if(e)e.preventDefault();if(audioContext.state==='suspended')audioContext.resume();const now=Date.now();if(lastHitTime[d]&&now-lastHitTime[d]<80)return;lastHitTime[d]=now;playSound(d);const p=document.querySelector(`[data-drum="${d}"]`);p.classList.add('hit');if(isPlaying&&!isCountingDown)checkAccuracy(d);}
-    function releaseDrum(e){if(e)e.preventDefault();setTimeout(()=>{document.querySelectorAll('.drum-pad.hit').forEach(p=>p.classList.remove('hit'));},120);}
-    function checkAccuracy(d){const p=levels[currentLevel].pattern,exp=p[d][currentBeat];if(exp===1){hits++;combo++;if(combo>maxComboValue)maxComboValue=combo;score+=10*combo;showFeedback('perfect','完美! 🎵');}else{combo=0;showFeedback('miss','失誤 😅');}updateScore();}
-    function showFeedback(t,m){const f=document.getElementById('feedback');f.className='feedback show '+t;f.textContent=m;setTimeout(()=>f.classList.remove('show'),400);}
-    function updateScore(){document.getElementById('score').textContent=score;document.getElementById('combo').textContent=combo;if(expectedHits>0&&loops>0){const a=Math.round((hits/(expectedHits*loops))*100);document.getElementById('accuracy').textContent=a+'%';}}
-    function selectLevel(l){currentLevel=l;document.getElementById('levelSelector').style.display='none';document.getElementById('practiceArea').classList.add('active');document.getElementById('levelTitle').textContent=levels[l].name;document.getElementById('tempoSlider').value=levels[l].bpm;document.getElementById('tempoDisplay').textContent=levels[l].bpm+' BPM';displayPattern();resetPractice();}
-    function backToLevels(){stopPlay();document.getElementById('levelSelector').style.display='grid';document.getElementById('practiceArea').classList.remove('active');}
-    function displayPattern(){const p=levels[currentLevel].pattern,g=document.getElementById('patternGrid');g.innerHTML='';expectedHits=0;const drums=['hihat','snare','kick','crash'];drums.forEach(d=>{p[d].forEach((b,i)=>{const c=document.createElement('div');c.className='beat-cell';c.dataset.drum=d;c.dataset.beat=i;if(b===1){c.classList.add('active');expectedHits++;}g.appendChild(c);});});}
-    function togglePlay(){if(isPlaying)stopPlay();else startCountdown();}
-    function startCountdown(){if(audioContext.state==='suspended')audioContext.resume();isCountingDown=true;countdownValue=4;document.getElementById('playButton').disabled=true;const ce=document.getElementById('countdown'),bpm=parseInt(document.getElementById('tempoSlider').value),bi=(60/bpm)*1000;function sc(){if(countdownValue>0){ce.textContent=countdownValue;ce.classList.add('show');playClick();setTimeout(()=>ce.classList.remove('show'),bi*0.8);countdownValue--;setTimeout(sc,bi);}else{isCountingDown=false;startPlay();}}sc();}
-    function startPlay(){isPlaying=true;currentBeat=0;if(loops===0){score=0;hits=0;combo=0;}document.getElementById('playButton').innerHTML='⏸ 暫停';document.getElementById('playButton').classList.add('playing');document.getElementById('playButton').disabled=false;document.getElementById('finishButton').disabled=true;const bpm=parseInt(document.getElementById('tempoSlider').value),iv=(60/bpm)*1000/4;intervalId=setInterval(()=>{updateBeatDisplay();playPatternBeat();currentBeat++;if(currentBeat>=16){currentBeat=0;loops++;if(loops>=maxLoops){stopPlay();document.getElementById('finishButton').disabled=false;showFeedback('perfect','完成！🎉');}}},iv);}
-    function stopPlay(){isPlaying=false;isCountingDown=false;clearInterval(intervalId);document.getElementById('playButton').innerHTML='▶ 開始';document.getElementById('playButton').classList.remove('playing');document.getElementById('playButton').disabled=false;clearBeatDisplay();}
-    function updateBeatDisplay(){document.querySelectorAll('.beat-cell.current').forEach(c=>c.classList.remove('current'));document.querySelectorAll(`.beat-cell[data-beat="${currentBeat}"]`).forEach(c=>c.classList.add('current'));}
-    function clearBeatDisplay(){document.querySelectorAll('.beat-cell.current').forEach(c=>c.classList.remove('current'));}
-    function playPatternBeat(){const p=levels[currentLevel].pattern,drums=['hihat','snare','kick','crash'];totalBeats++;drums.forEach(d=>{if(p[d][currentBeat]===1)playSound(d);});}
-    function resetPractice(){stopPlay();score=0;combo=0;maxComboValue=0;hits=0;totalBeats=0;currentBeat=0;loops=0;displayPattern();updateScore();document.getElementById('finishButton').disabled=true;}
-    function updateTempo(){const bpm=document.getElementById('tempoSlider').value;document.getElementById('tempoDisplay').textContent=bpm+' BPM';if(isPlaying){stopPlay();startCountdown();}}
-    function finishPractice(){const a=expectedHits>0?Math.round((hits/(expectedHits*maxLoops))*100):0;document.getElementById('finalScore').textContent=score;document.getElementById('finalAccuracy').textContent=a+'%';document.getElementById('maxCombo').textContent=maxComboValue;let et='';if(a>=95)et='🌟 完美演奏！';else if(a>=80)et='👏 表現優異！';else if(a>=60)et='💪 不錯！';else et='😊 繼續加油！';document.getElementById('encouragement').textContent=et;document.getElementById('resultModal').classList.add('show');}
-    function closeResultModal(){document.getElementById('resultModal').classList.remove('show');backToLevels();}
-    function retryLevel(){document.getElementById('resultModal').classList.remove('show');resetPractice();}
-    document.getElementById('studentName').addEventListener('keypress',(e)=>{if(e.key==='Enter')login();});
+    // ========== 音效函數 ==========
+    
+    function playHiHat() {
+      const noise = audioContext.createBufferSource();
+      const noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 0.05, audioContext.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      
+      for (let i = 0; i < noiseBuffer.length; i++) {
+        output[i] = Math.random() * 2 - 1;
+      }
+      
+      noise.buffer = noiseBuffer;
+      
+      const filter = audioContext.createBiquadFilter();
+      filter.type = 'highpass';
+      filter.frequency.value = 7000;
+      
+      const gainNode = audioContext.createGain();
+      gainNode.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+      
+      noise.connect(filter);
+      filter.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      noise.start(audioContext.currentTime);
+      noise.stop(audioContext.currentTime + 0.05);
+    }
+
+    function playSnare() {
+      const osc = audioContext.createOscillator();
+      const oscGain = audioContext.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(100, audioContext.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(50, audioContext.currentTime + 0.1);
+      oscGain.gain.setValueAtTime(0.7, audioContext.currentTime);
+      oscGain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+      osc.connect(oscGain);
+      
+      const noise = audioContext.createBufferSource();
+      const noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 0.1, audioContext.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      
+      for (let i = 0; i < noiseBuffer.length; i++) {
+        output[i] = Math.random() * 2 - 1;
+      }
+      
+      noise.buffer = noiseBuffer;
+      
+      const noiseFilter = audioContext.createBiquadFilter();
+      noiseFilter.type = 'highpass';
+      noiseFilter.frequency.value = 1000;
+      
+      const noiseGain = audioContext.createGain();
+      noiseGain.gain.setValueAtTime(0.4, audioContext.currentTime);
+      noiseGain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.1);
+      
+      noise.connect(noiseFilter);
+      noiseFilter.connect(noiseGain);
+      
+      const masterGain = audioContext.createGain();
+      masterGain.gain.value = 0.6;
+      
+      oscGain.connect(masterGain);
+      noiseGain.connect(masterGain);
+      masterGain.connect(audioContext.destination);
+      
+      osc.start(audioContext.currentTime);
+      osc.stop(audioContext.currentTime + 0.1);
+      noise.start(audioContext.currentTime);
+      noise.stop(audioContext.currentTime + 0.1);
+    }
+
+    function playKick() {
+      const osc = audioContext.createOscillator();
+      const gainNode = audioContext.createGain();
+      
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(150, audioContext.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(40, audioContext.currentTime + 0.05);
+      osc.frequency.exponentialRampToValueAtTime(30, audioContext.currentTime + 0.3);
+      
+      gainNode.gain.setValueAtTime(1, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.5, audioContext.currentTime + 0.05);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.3);
+      
+      const filter = audioContext.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.value = 200;
+      
+      osc.connect(filter);
+      filter.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      osc.start(audioContext.currentTime);
+      osc.stop(audioContext.currentTime + 0.3);
+    }
+
+    function playCrash() {
+      const noise = audioContext.createBufferSource();
+      const noiseBuffer = audioContext.createBuffer(1, audioContext.sampleRate * 0.8, audioContext.sampleRate);
+      const output = noiseBuffer.getChannelData(0);
+      
+      for (let i = 0; i < noiseBuffer.length; i++) {
+        output[i] = Math.random() * 2 - 1;
+      }
+      
+      noise.buffer = noiseBuffer;
+      
+      const filter1 = audioContext.createBiquadFilter();
+      filter1.type = 'bandpass';
+      filter1.frequency.value = 5000;
+      filter1.Q.value = 1;
+      
+      const filter2 = audioContext.createBiquadFilter();
+      filter2.type = 'highpass';
+      filter2.frequency.value = 3000;
+      
+      const gainNode = audioContext.createGain();
+      gainNode.gain.setValueAtTime(0.4, audioContext.currentTime);
+      gainNode.gain.exponentialRampToValueAtTime(0.2, audioContext.currentTime + 0.1);
+      gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.8);
+      
+      noise.connect(filter1);
+      filter1.connect(filter2);
+      filter2.connect(gainNode);
+      gainNode.connect(audioContext.destination);
+      
+      noise.start(audioContext.currentTime);
+      noise.stop(audioContext.currentTime + 0.8);
+    }
+
+    function playSound(drum) {
+      if (drum === 'hihat') {
+        playHiHat();
+      } else if (drum === 'snare') {
+        playSnare();
+      } else if (drum === 'kick') {
+        playKick();
+      } else if (drum === 'crash') {
+        playCrash();
+      }
+    }
+
+    function playClick() {
+      const osc = audioContext.createOscillator();
+      const gain = audioContext.createGain();
+      osc.frequency.value = 1000;
+      osc.connect(gain);
+      gain.connect(audioContext.destination);
+      gain.gain.setValueAtTime(0.3, audioContext.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + 0.05);
+      osc.start(audioContext.currentTime);
+      osc.stop(audioContext.currentTime + 0.05);
+    }
+
+    // ========== 遊戲控制函數 ==========
+
+    function login() {
+      const name = document.getElementById('studentName').value.trim();
+      if (name === '') {
+        alert('請輸入姓名');
+        return;
+      }
+      
+      studentName = name;
+      document.getElementById('loginArea').style.display = 'none';
+      document.getElementById('levelSelector').style.display = 'grid';
+      document.getElementById('welcomeText').textContent = `歡迎 ${studentName}！🎉`;
+    }
+
+    function hitDrum(drum, event) {
+      if (event) {
+        event.preventDefault();
+      }
+      
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      
+      const now = Date.now();
+      if (lastHitTime[drum] && now - lastHitTime[drum] < 80) {
+        return;
+      }
+      lastHitTime[drum] = now;
+      
+      playSound(drum);
+      
+      const pad = document.querySelector(`[data-drum="${drum}"]`);
+      pad.classList.add('hit');
+
+      if (isPlaying && !isCountingDown) {
+        checkAccuracy(drum);
+      }
+    }
+
+    function releaseDrum(event) {
+      if (event) {
+        event.preventDefault();
+      }
+      
+      setTimeout(() => {
+        document.querySelectorAll('.drum-pad.hit').forEach(pad => {
+          pad.classList.remove('hit');
+        });
+      }, 120);
+    }
+
+    function checkAccuracy(drum) {
+      const pattern = levels[currentLevel].pattern;
+      const expected = pattern[drum][currentBeat];
+      
+      if (expected === 1) {
+        hits++;
+        combo++;
+        if (combo > maxComboValue) {
+          maxComboValue = combo;
+        }
+        score += 10 * combo;
+        showFeedback('perfect', '完美! 🎵');
+      } else {
+        combo = 0;
+        showFeedback('miss', '失誤 😅');
+      }
+      
+      updateScore();
+    }
+
+    function showFeedback(type, message) {
+      const feedback = document.getElementById('feedback');
+      feedback.className = 'feedback show ' + type;
+      feedback.textContent = message;
+      
+      setTimeout(() => {
+        feedback.classList.remove('show');
+      }, 400);
+    }
+
+    function updateScore() {
+      document.getElementById('score').textContent = score;
+      document.getElementById('combo').textContent = combo;
+      
+      if (expectedHits > 0 && loops > 0) {
+        const accuracy = Math.round((hits / (expectedHits * loops)) * 100);
+        document.getElementById('accuracy').textContent = accuracy + '%';
+      }
+    }
+
+    function selectLevel(level) {
+      currentLevel = level;
+      document.getElementById('levelSelector').style.display = 'none';
+      document.getElementById('practiceArea').classList.add('active');
+      document.getElementById('levelTitle').textContent = levels[level].name;
+      document.getElementById('tempoSlider').value = levels[level].bpm;
+      document.getElementById('tempoDisplay').textContent = levels[level].bpm + ' BPM';
+      
+      displayPattern();
+      resetPractice();
+    }
+
+    function backToLevels() {
+      stopPlay();
+      document.getElementById('levelSelector').style.display = 'grid';
+      document.getElementById('practiceArea').classList.remove('active');
+    }
+
+    function displayPattern() {
+      const pattern = levels[currentLevel].pattern;
+      const grid = document.getElementById('patternGrid');
+      grid.innerHTML = '';
+      
+      expectedHits = 0;
+      const drums = ['snare', 'hihat', 'kick', 'crash'];
+      drums.forEach(drum => {
+        pattern[drum].forEach((beat, index) => {
+          const cell = document.createElement('div');
+          cell.className = 'beat-cell';
+          cell.dataset.drum = drum;
+          cell.dataset.beat = index;
+          if (beat === 1) {
+            cell.classList.add('active');
+            expectedHits++;
+          }
+          grid.appendChild(cell);
+        });
+      });
+    }
+
+    function togglePlay() {
+      if (isPlaying) {
+        stopPlay();
+      } else {
+        startCountdown();
+      }
+    }
+
+    function startCountdown() {
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+      
+      isCountingDown = true;
+      countdownValue = 4;
+      document.getElementById('playButton').disabled = true;
+      
+      const countdownEl = document.getElementById('countdown');
+      const bpm = parseInt(document.getElementById('tempoSlider').value);
+      const beatInterval = (60 / bpm) * 1000;
+      
+      function showCount() {
+        if (countdownValue > 0) {
+          countdownEl.textContent = countdownValue;
+          countdownEl.classList.add('show');
+          playClick();
+          
+          setTimeout(() => {
+            countdownEl.classList.remove('show');
+          }, beatInterval * 0.8);
+          
+          countdownValue--;
+          setTimeout(showCount, beatInterval);
+        } else {
+          isCountingDown = false;
+          startPlay();
+        }
+      }
+      
+      showCount();
+    }
+
+    function startPlay() {
+      isPlaying = true;
+      currentBeat = 0;
+      if (loops === 0) {
+        score = 0;
+        hits = 0;
+        combo = 0;
+      }
+      
+      document.getElementById('playButton').innerHTML = '⏸ 暫停';
+      document.getElementById('playButton').classList.add('playing');
+      document.getElementById('playButton').disabled = false;
+      document.getElementById('finishButton').disabled = true;
+      
+      const bpm = parseInt(document.getElementById('tempoSlider').value);
+      const interval = (60 / bpm) * 1000 / 4;
+      
+      intervalId = setInterval(() => {
+        updateBeatDisplay();
+        playPatternBeat();
+        
+        currentBeat++;
+        if (currentBeat >= 16) {
+          currentBeat = 0;
+          loops++;
+          
+          if (loops >= maxLoops) {
+            stopPlay();
+            document.getElementById('finishButton').disabled = false;
+            showFeedback('perfect', '完成！🎉');
+          }
+        }
+      }, interval);
+    }
+
+    function stopPlay() {
+      isPlaying = false;
+      isCountingDown = false;
+      clearInterval(intervalId);
+      document.getElementById('playButton').innerHTML = '▶ 開始';
+      document.getElementById('playButton').classList.remove('playing');
+      document.getElementById('playButton').disabled = false;
+      clearBeatDisplay();
+    }
+
+    function updateBeatDisplay() {
+      document.querySelectorAll('.beat-cell.current').forEach(cell => {
+        cell.classList.remove('current');
+      });
+      
+      document.querySelectorAll(`.beat-cell[data-beat="${currentBeat}"]`).forEach(cell => {
+        cell.classList.add('current');
+      });
+    }
+
+    function clearBeatDisplay() {
+      document.querySelectorAll('.beat-cell.current').forEach(cell => {
+        cell.classList.remove('current');
+      });
+    }
+
+    function playPatternBeat() {
+      const pattern = levels[currentLevel].pattern;
+      const drums = ['hihat', 'snare', 'kick', 'crash'];
+      
+      totalBeats++;
+      
+      drums.forEach(drum => {
+        if (pattern[drum][currentBeat] === 1) {
+          playSound(drum);
+        }
+      });
+    }
+
+    function resetPractice() {
+      stopPlay();
+      score = 0;
+      combo = 0;
+      maxComboValue = 0;
+      hits = 0;
+      totalBeats = 0;
+      currentBeat = 0;
+      loops = 0;
+      
+      displayPattern();
+      updateScore();
+      document.getElementById('finishButton').disabled = true;
+    }
+
+    function updateTempo() {
+      const bpm = document.getElementById('tempoSlider').value;
+      document.getElementById('tempoDisplay').textContent = bpm + ' BPM';
+      
+      if (isPlaying) {
+        stopPlay();
+        startCountdown();
+      }
+    }
+
+    function finishPractice() {
+      const accuracy = expectedHits > 0 ? Math.round((hits / (expectedHits * maxLoops)) * 100) : 0;
+      
+      document.getElementById('finalScore').textContent = score;
+      document.getElementById('finalAccuracy').textContent = accuracy + '%';
+      document.getElementById('maxCombo').textContent = maxComboValue;
+      
+      let encouragementText = '';
+      if (accuracy >= 95) {
+        encouragementText = '🌟 完美演奏！你是節奏大師！';
+      } else if (accuracy >= 80) {
+        encouragementText = '👏 表現優異！繼續加油！';
+      } else if (accuracy >= 60) {
+        encouragementText = '💪 不錯的嘗試！持續練習會更好！';
+      } else {
+        encouragementText = '😊 別氣餒，多練習就會進步！';
+      }
+      document.getElementById('encouragement').textContent = encouragementText;
+      
+      document.getElementById('resultModal').classList.add('show');
+    }
+
+    function closeResultModal() {
+      document.getElementById('resultModal').classList.remove('show');
+      backToLevels();
+    }
+
+    function retryLevel() {
+      document.getElementById('resultModal').classList.remove('show');
+      resetPractice();
+    }
+
+    // ========== 事件監聽 ==========
+
+    document.addEventListener('touchmove', function(e) {
+      const target = e.target;
+      if (!target.closest('.container')) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+
+    let lastTouchEnd = 0;
+    document.addEventListener('touchend', function(e) {
+      const now = Date.now();
+      if (now - lastTouchEnd <= 300) {
+        e.preventDefault();
+      }
+      lastTouchEnd = now;
+    }, false);
+
+    document.getElementById('studentName').addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        login();
+      }
+    });
   </script>
 </body>
 </html>
