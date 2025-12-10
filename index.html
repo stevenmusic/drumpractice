@@ -1139,39 +1139,33 @@
         audioContext.resume();
       }
       
-      isCountingDown = true;
-      countdownValue = 4;
       document.getElementById('playButton').disabled = true;
       
       const countdownEl = document.getElementById('countdown');
       const bpm = parseInt(document.getElementById('tempoSlider').value);
       const beatInterval = (60 / bpm) * 1000;
       
-      function showCount() {
-        if (countdownValue > 0) {
-          countdownEl.textContent = countdownValue;
+      // 預先設定 4 個倒數
+      const countdowns = [4, 3, 2, 1];
+      
+      countdowns.forEach((num, index) => {
+        setTimeout(() => {
+          countdownEl.textContent = num;
           countdownEl.classList.add('show');
           playClick();
           
           setTimeout(() => {
             countdownEl.classList.remove('show');
-          }, beatInterval * 0.8);
-          
-          countdownValue--;
-          
-          if (countdownValue > 0) {
-            setTimeout(showCount, beatInterval);
-          } else {
-            // 最後一拍結束後立即開始，不再等待
-            setTimeout(() => {
-              isCountingDown = false;
-              startPlay();
-            }, beatInterval);
-          }
-        }
-      }
+          }, beatInterval * 0.6);
+        }, beatInterval * index);
+      });
       
-      showCount();
+      // 在第 4 拍後立即開始（沒有額外延遲）
+      isCountingDown = true;
+      setTimeout(() => {
+        isCountingDown = false;
+        startPlay();
+      }, beatInterval * 4);
     }
 
     function startPlay() {
