@@ -1158,10 +1158,16 @@
           }, beatInterval * 0.8);
           
           countdownValue--;
-          setTimeout(showCount, beatInterval);
-        } else {
-          isCountingDown = false;
-          startPlay();
+          
+          if (countdownValue > 0) {
+            setTimeout(showCount, beatInterval);
+          } else {
+            // 最後一拍結束後立即開始，不再等待
+            setTimeout(() => {
+              isCountingDown = false;
+              startPlay();
+            }, beatInterval);
+          }
         }
       }
       
